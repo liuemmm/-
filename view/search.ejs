@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<% include head.ejs %>
+<title><%= essay.title %></title>
+<link rel="stylesheet" href="/layui/css/home.css">
+<link rel="stylesheet" href="/layui/css/details.css">
+<link rel="stylesheet" href="/layui/css/animate.css">
+<style>
+    p{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+</style>
+<body>
+<header>
+    <ul class="layui-nav" style="background:rgba(0, 0, 0, .8);">
+        <div id="search">
+        <form class="layui-form">
+            <div class="layui-input-inline">
+                <input type="text" name="keyword" required  placeholder=""
+                       autocomplete="off"
+                       class="layui-input">
+                <button class="btn" lay-submit lay-filter="search"><i class="layui-icon layui-icon-search"></i>
+                </button>
+            </div>
+        </form>
+        </div>
+        <li class="layui-nav-item">
+            <a href="">首页</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">About us</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">文章</a>
+        </li>
+        <% if(login) { %>
+            <li class="layui-nav-item">
+                <a id="user-pic" href="/user/<%= user.username %>">
+                    <img src="/layui/images/1.jpg" class="layui-nav-img"><%= user.username %>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/user/<%= user.username %>">个人主页</a></dd>
+                    <dd><a href="/admin/task/addtask">个人管理</a></dd>
+                    <dd><a href="/logout">退出</a></dd>
+                </dl>
+            </li>
+        <% }else{ %>
+            <li class="layui-nav-item">
+                <a href="/login">登录/注册</a>
+            </li>
+        <% } %>
+    </ul>
+</header>
+<div id="page">
+    <div class="essay">
+        <% let ani=['rollIn','bounceIn','bounceInUp','bounceInDown','bounceInLeft','bounceInRight','slideInUp','slideInDown','slideInLeft',
+            'slideInRight','lightSpeedIn','pulse','flipInX','flipInY','bounce','shake','swing','bounceInU','wobble'];
+        for(let i=0;i<essay.length;i++){ %>
+        <div class="page-essay wow <%= ani[Math.round(Math.random()*18)]  %>">
+            <img class="essay-pic" src="" alt="">
+            <div class="essay-class"><i class="layui-icon layui-icon-edit"></i></div>
+            <div class="essay-dir"><h4><%= essay[i].dir %></h4></div>
+            <div class="essay-title"><h5><%= essay[i].title %></h5></div>
+            <div class="essay-uesr">
+                <div class="essay-usernam"><i class="layui-icon layui-icon-friends"></i> <span><%= essay[i].author.username %></span></div>
+                &nbsp;&nbsp;&nbsp;
+                <div class="essay-time"><i class="layui-icon layui-icon-date"></i> <span><%= new Date(essay[i].time).toLocaleString() %></span></div>
+            </div>
+            <div class="essay-content">
+                <%- essay[i].content %>
+            </div>
+            <div class="full-text"><a href="/user/<%= essay[i].author.username %>/essay/<%= essay[i]._id %>">阅读全文</a></div>
+            <hr>
+            <dl class="essay-report">
+                <dd><i class="layui-icon layui-icon-star"> 收藏</i></dd>
+                <dd><i class="layui-icon layui-icon-reply-fill"> 0</i></dd>
+                <dd><i class="layui-icon layui-icon-share"> 0</i></dd>
+                <dd><i class="layui-icon layui-icon-praise"> 0</i></dd>
+            </dl>
+        </div>
+        <%}%>
+    </div>
+
+</div>
+
+<footer>
+</footer>
+<script>
+    // $(window).scroll( function() {
+    //     if($(window).scrollTop()>100){
+    //         $('.layui-nav').css({'background':'rgba(0, 0, 0, .8)'})
+    //     }else{
+    //         $('.layui-nav').css({'background':'rgba(0, 0, 0, .1)'})
+    //     }
+    // });
+    layui.use(['layedit', 'element', 'form'], function () {
+        var layedit = layui.layedit;
+        var element = layui.element;
+        var form = layui.form;
+        form.on('submit(search)', function (data) {
+            //layer.msg(JSON.stringify(data.field));
+            window.location.href='/search?word='+data.field.keyword;
+            return false;
+        });
+    });
+</script>
+
+<script src="/layui/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+</body>
+</html>

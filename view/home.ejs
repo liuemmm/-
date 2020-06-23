@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<% include head.ejs %>
+<title><%= name %>的主页</title>
+<link rel="stylesheet" href="/layui/css/home.css">
+<link rel="stylesheet" href="/layui/css/animate.css">
+<body>
+<header>
+    <ul class="layui-nav">
+        <div id="search">
+            <form class="layui-form">
+                <div class="layui-input-inline">
+                    <input type="text" name="keyword" required  placeholder=""
+                           autocomplete="off"
+                           class="layui-input">
+                    <button class="btn" lay-submit lay-filter="search"><i class="layui-icon layui-icon-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <li class="layui-nav-item">
+            <a href="">首页</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">About us</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">文章</a>
+        </li>
+        <% if(login) { %>
+            <li class="layui-nav-item">
+                <a id="user-pic" href="/user/<%= user.username %>">
+                    <img src="/layui/images/1.jpg" class="layui-nav-img"><%= user.username %>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/user/<%= user.username %>">个人主页</a></dd>
+                    <dd><a href="/admin/task/addtask">个人管理</a></dd>
+                    <dd><a href="/logout">退出</a></dd>
+                </dl>
+            </li>
+        <% }else{ %>
+            <li class="layui-nav-item">
+                <a href="/login">登录/注册</a>
+            </li>
+        <% } %>
+    </ul>
+</header>
+<section id="head">
+</section>
+<div id="page">
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <%- `<div id='name'>* ${name} }</div>` %>
+            <li class="layui-this"> 博客首页</li>
+            <li> 博文目录</li>
+            <li> 图片分享</li>
+            <li> 我的收藏</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="essay-list">
+                    <div class="essay-list-col"></div>
+                    <div class="essay-list-col"></div>
+                    <div class="essay-list-col"></div>
+                    <div class="essay-list-col"></div>
+                    <!--                    <div class="essay">-->
+                    <!--                        <img class="essay-pic" src="" alt="">-->
+                    <!--                        <div class="essay-class"><i class="layui-icon layui-icon-edit"></i></div>-->
+                    <!--                        <div class="essay-dir"><h4>旅游那点事</h4></div>-->
+                    <!--                        <div class="essay-title"><h5>最刺激的冒险</h5></div>-->
+                    <!--                        <div class="essay-time"><p>2019.12.21</p></div>-->
+                    <!--                        <div class="essay-content">-->
+                    <!--                            <p>，不知道，不知道，不知道，不知道，不知道，不知道，，不知道，不知道，不知道，不知道，</p>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="full-text"><span>阅读全文</span></div>-->
+                    <!--                        <hr>-->
+                    <!--                        <dl class="essay-report">-->
+                    <!--                            <dd><i class="layui-icon layui-icon-star"> 收藏</i></dd>-->
+                    <!--                            <dd><i class="layui-icon layui-icon-reply-fill"> 123</i></dd>-->
+                    <!--                            <dd><i class="layui-icon layui-icon-share"> 233</i></dd>-->
+                    <!--                            <dd><i class="layui-icon layui-icon-praise"> 3</i></dd>-->
+                    <!--                        </dl>-->
+                    <!--                    </div>-->
+                </div>
+                <div id="test1"></div>
+            </div>
+            <div class="layui-tab-item">2</div>
+            <div class="layui-tab-item">3</div>
+            <div class="layui-tab-item">4</div>
+            <div class="layui-tab-item">5</div>
+            <div class="layui-tab-item">6</div>
+        </div>
+    </div>
+</div>
+
+<footer>
+</footer>
+<script>
+
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    let ani=['rollIn','bounceIn','bounceInUp','bounceInDown','bounceInLeft','bounceInRight','slideInUp','slideInDown','slideInLeft',
+        'slideInRight','lightSpeedIn','pulse','flipInX','flipInY','bounce','shake','swing','bounceInU','wobble']
+    layui.use(['element','form'], function () {
+        var element = layui.element;
+        var form =layui.form;
+        //…
+        form.on('submit(search)', function (data) {
+            //layer.msg(JSON.stringify(data.field));
+            window.location.href='/search?word='+data.field.keyword;
+            return false;
+        });
+    });
+    layui.$(window).scroll( function() {
+        if($(window).scrollTop()>100){
+            $('.layui-nav').css({'background':'rgba(0, 0, 0, .8)'})
+        }else{
+            $('.layui-nav').css({'background':'rgba(0, 0, 0, .1)'})
+        }
+    });
+    let username = window.location.href.split('/')[4];
+    $.ajax({
+        url: '/user/essay',
+        type: 'post',
+        data: {
+            username: username,
+            limit: 12,
+            page: 1
+        },
+        success: function (msg) {
+            //console.log(msg)
+            layui.use('laypage', function () {
+                var laypage = layui.laypage;
+                //执行一个laypage实例
+                laypage.render({
+                    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+                    , limit: 12 //每页显示条数
+                    , count: msg.count //数据总数，从服务端得到
+                    , jump: function (obj, first) {
+                        //obj包含了当前分页的所有参数，比如：
+                        //console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                        //console.log(obj.limit); //得到每页显示的条数
+
+                        //console.log(obj.curr, obj.limit)
+                        $(window).scrollTop(0);
+                        $(`.essay-list-col`).empty();
+                        $.ajax({
+                            url: '/user/essay',
+                            type: 'post',
+                            data: {
+                                username: username,
+                                limit: obj.limit,
+                                page: obj.curr
+                            },
+                            success: function (res) {
+                                if (res.code === 0) {
+                                    //console.log(res)
+                                    let time, a, content;
+                                    for (let i = 0; i < res.data.length; i++) {
+                                        time = new Date(res.data[i].time);
+                                        a = `${time.getFullYear()}.${time.getMonth()}.${time.getDate()}`;
+                                        content = $(`<p>${res.data[i].content}</p>`).text();
+                                        $(`.essay-list-col:nth-child(${i % 4 + 1})`).append(`<div class="essay wow ${ani[Math.round(Math.random()*18)] }">
+                                    <img class="essay-pic" src="" alt="">
+                                    <div class="essay-class"><i class="layui-icon layui-icon-edit"></i></div>
+                                    <div class="essay-dir"><h4>${res.data[i].dir}</h4></div>
+                                    <div class="essay-title"><h5>${res.data[i].title}</h5></div>
+                                    <div class="essay-time"><p>${a}</p></div>
+                                    <div class="essay-content">
+                                        <p>${content}</p>
+                                    </div>
+                                    <div class="full-text"><a href="/user/${username}/essay/${res.data[i]._id}">阅读全文</a></div>
+                                    <hr>
+                                    <dl class="essay-report">
+                                        <dd><i class="layui-icon layui-icon-star"></i> 收藏</dd>
+                                        <dd><i class="layui-icon layui-icon-reply-fill"> 0</i></dd>
+                                        <dd><i class="layui-icon layui-icon-share"> 0</i></dd>
+                                        <dd><i class="layui-icon layui-icon-praise"> 0</i></dd>
+                                    </dl>
+                                </div>`)
+                                        //console.log(res)
+                                    }
+                                } else {
+                                    alert('数据库出错了')
+                                }
+                            }
+                        })
+                    }
+                });
+            });
+        }
+    })
+
+</script>
+<script src="/layui/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+</body>
+</html>

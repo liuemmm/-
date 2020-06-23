@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>用户后台</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/layui/css/admin.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">用户管理</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="/layui/images/1.jpg" class="layui-nav-img">
+                    <%= user.username %>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="/user/<%= user.username %>">回到主页</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">文章</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/admin/task/addtask">文章发布</a></dd>
+                        <dd class=""><a href="/admin/task/all">文章管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-this">
+                    <a href="/admin/user ">用户管理</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <fieldset class="layui-elem-field">
+                <legend>用户管理</legend>
+            </fieldset>
+
+            <table id="demo" lay-filter="demo"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn  layui-btn-xs" lay-event="edit">更改级别</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除用户</a>
+            </script>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        公告 - 底部固定区域
+    </div>
+</div>
+<script src="/layui/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'table', 'form', 'rate', 'laydate', 'layedit', 'layer'], function () {
+        var element = layui.element;
+        var form = layui.form;
+        var layer = layui.layer;
+        var layedit = layui.layedit;
+        var table = layui.table;
+        var $ = layui.$;
+        table.render({
+            elem: '#demo',
+            page: true,//开启分页
+            url: '/admin/user',
+            method: 'post',
+            cols: [
+                [
+                    {field: 'username', title: '用户名'},
+                    {field: 'level', title: '用户级别'},
+                    {field: 'tool', toolbar: '#barDemo'}
+                ]
+            ]
+        })
+        table.on('tool(demo)', function (obj) {
+            if (obj.event == 'del') {
+                layer.confirm('是否删除?', {icon: 3, title: '提示'}, function (index) {
+                    $.ajax({
+                        url: '/admin/user/del',
+                        method: 'post',
+                        data: {
+                            _id: obj.data._id,
+                            level: obj.data.level
+                        },
+                        success: (res) => {
+                            console.log(res)
+                            if (res.code == 0) {
+                                location.reload();
+                            } else {
+                                layer.open({
+                                    title: '提示'
+                                    , content: '权限不够',
+                                    time: 1000,
+                                    closeBtn: 0,
+                                    btn: 0,
+                                    anim: 6
+                                });
+                            }
+                        }
+                    })
+                    layer.close(index);
+                })
+            } else if (obj.event == 'edit') {
+                layer.prompt(function (value, index, elem) {
+                    $.ajax({
+                        url: '/admin/user/relevel',
+                        method: 'post',
+                        data: {
+                            _id: obj.data._id,
+                            level: obj.data.level,
+                            num: value
+                        },
+                        success:(res)=>{
+                            if (res.code == 0) {
+                                layer.open({
+                                    title: '提示'
+                                    , content: '修改成功',
+                                    time: 1000,
+                                    closeBtn: 0,
+                                    btn: 0,
+                                    anim: 4
+                                });
+                                location.reload();
+                            } else {
+                                layer.open({
+                                    title: '提示'
+                                    , content: '权限不够',
+                                    time: 1000,
+                                    closeBtn: 0,
+                                    btn: 0,
+                                    anim: 6
+                                });
+                            }
+                        }
+                    })
+                    layer.close(index);
+                });
+            }
+
+        })
+    })
+</script>
+</body>
+</html>
+

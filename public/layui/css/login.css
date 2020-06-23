@@ -1,0 +1,135 @@
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 宋体;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3F3F3F url(/layui/images/1.png) no-repeat center/cover;
+}
+
+.bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1024px;
+    height: 597px;
+    /*background: url(/layui/images/bg.png) no-repeat center/cover;*/
+}
+
+.login {
+    box-sizing: border-box;
+    width: 390px;
+    height: 420px;
+    background: #fff;
+    box-shadow: 0px 0px 3px #fefefe;
+    transition: .5s;
+    transform: translateX(0) translateZ(0);
+}
+
+.layui-form {
+    margin: 45px 60px;
+}
+
+.layui-form-item:nth-child(2) {
+    margin-top: 50px;
+}
+
+.layui-input-block {
+    margin: 0;
+}
+
+.form-title {
+    text-align: center;
+    color: rgb(87, 86, 154);
+}
+
+.form-title > span {
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.layui-input {
+    height: 45px;
+    font-size: 18px;
+    padding-left: 23px;
+    border-radius: 47px;
+    border-color: rgb(178, 178, 178);
+}
+
+.layui-input-block > i {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 25px;
+}
+
+.layui-form-item {
+    margin-bottom: 30px;
+}
+
+.layui-input-block {
+    text-align: center;
+}
+
+.layui-input-block > button {
+    margin-top: 8px;
+    width: 120px;
+    height: 35px;
+    background-color: rgb(87, 86, 154);
+    font-size: 18px;
+}
+
+#forgot {
+    font-size: 17px;
+    color: rgb(192, 192, 192);
+    cursor: pointer;
+}
+#forgot:hover{
+    color: rgb(128,91,109);
+    text-decoration: underline;
+}
+.reg {
+    box-sizing: border-box;
+    width: 390px;
+    height: 420px;
+    background: rgba(87, 86, 154, .7);
+    color: #fff;
+}
+
+.sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+}
+
+.reg {
+    transform: translateX(-50px) translateZ(-300px);
+    transition: .5s;
+    cursor: pointer;
+}
+.login{
+    transform: translateX(50px) translateZ(0px);
+    transition: .5s;
+}
+
+body > div.bg > div > div.reg > form > div.form-title > span {
+    color: #fff;
+}
+
+body > div > div > div.reg > form > div:nth-child(5) > div > button {
+    background: #fff;
+    color: rgba(87, 86, 154, 1);
+}
+#stars{
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+}

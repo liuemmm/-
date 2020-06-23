@@ -1,0 +1,13 @@
+{
+  "name": "keshe",
+  "version": "1.0.0",
+  "dependencies": {
+    "crypto": "1.0.1",
+    "ejs": "2.6.1",
+    "express": "4.16.4",
+    "express-session": "1.17.0",
+    "mongoose": "5.4.2",
+    "connect-mongo": "3.2.0",
+    "multer": "1.4.2"
+  }
+}

@@ -1,0 +1,155 @@
+.essay{
+    width: 1336px;
+    margin-top: 200px;
+}
+
+.page-essay {
+    width: 100%;
+    background-color: #fff;
+    font-family: 沐瑶软笔手写体;
+}
+
+.page-essay {
+    margin-bottom: 40px;
+    background-color: #fff;
+}
+.essay-uesr div{
+    display: inline-block;
+}
+.page-essay div {
+    text-align: center;
+}
+
+.essay-content p {
+    text-align: start;
+    text-indent: 2em;
+}
+
+.essay-class {
+    margin-top: -40px;
+}
+
+.essay-class .layui-icon-edit {
+    font-size: 45px;
+    background-color: #000;
+    color: #fff;
+}
+
+.essay-dir {
+    margin-top: 45px;
+    font-size: 16px;
+    color: rgb(148, 148, 148);
+}
+
+.essay-title {
+    margin-top: 16px;
+    font-size: 25px;
+}
+
+.essay-time {
+    margin-top: 16px;
+    font-size: 17px;
+    color: rgb(153, 153, 153);
+}
+
+.essay-content {
+    margin-top: 30px;
+    padding: 0 120px 35px;
+    color: #333;
+    font-size: 15px;
+    height: auto !important;
+}
+
+.essay-content p {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.full-text {
+    margin-top: 25px;
+}
+
+.full-text a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-width: 1px;
+    border-color: transparent rgb(232, 232, 232) transparent rgb(232, 232, 232);
+    border-style: solid;
+    font-size: 18px;
+}
+
+.essay-report {
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+}
+
+.essay-report dd {
+    padding: 20px 20px 30px;
+    flex: 1;
+}
+
+.page-essay-reply{
+    width: 100%;
+    margin-top: 20px;
+    background-color: #fff;
+}
+#demo{
+    padding-top: 30px;
+}
+.layui-layedit-iframe{
+    margin: 10px 30px;
+    border: 1px #ddd solid;
+    border-radius: 10px;
+}
+.layui-layedit{
+    border: none;
+    padding-top: 10px;
+    position: relative;
+    margin-top: 20px;
+}
+.layui-layedit-tool{
+    position: absolute;
+    left: 25px;
+    bottom: -50px;
+    border: none;
+}
+.layui-btn{
+    margin-left: 1172px;
+    padding: 0 40px;
+    background-color: #000;
+    border-radius: 5px;
+}
+.essay-reply-list{
+    margin: 45px;
+    padding-bottom: 1px;
+}
+.essay-reply-list>dd+dd{
+    border-top: 1px #bbb dashed;
+}
+.essay-reply-user{
+    display: flex;
+    padding: 45px 0 25px 0;
+}
+.essay-reply{
+    flex: 1;
+    display: flex;
+    padding: 0 10px;
+    flex-direction: column;
+}
+.essay-reply div{
+    padding-bottom: 20px;
+}
+.essay-reply-username{
+    font-size: 20px;
+    font-family: 站酷高端黑修订151105 ;
+}
+.essay-reply-content{
+    color: #666;
+}
+.essay-reply-time{
+    color: #aaa;
+}
+
+

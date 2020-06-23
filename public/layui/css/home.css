@@ -1,0 +1,265 @@
+@font-face {
+    font-family: Ribbonofhope-zA71;
+    src:url(/layui/font/Ribbonofhope-zA71.ttf);
+}
+
+@font-face {
+    font-family: 站酷酷黑体;
+    src: url(/layui/font/站酷酷黑体.ttf);
+}
+
+@font-face {
+    font-family: 站酷高端黑修订151105;
+    src: url(/layui/font/站酷高端黑修订151105.ttf);
+}
+
+@font-face {
+    font-family: 站酷文艺体;
+    src: url(/layui/font/站酷文艺体.ttf);
+}
+@font-face {
+    font-family: 站酷快乐体2016修订版;
+    src: url(/layui/font/站酷快乐体2016修订版.ttf);
+}
+
+@font-face {
+    font-family: 沐瑶软笔手写体;
+    src: url(/layui/font/沐瑶软笔手写体.ttf);
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    background: rgb(247, 247, 247);
+    font-family: 站酷快乐体2016修订版;
+}
+
+#head {
+    height: 100%;
+    background: url(/layui/images/2.jpg) no-repeat center/cover;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    font-family: 站酷酷黑体,站酷高端黑修订151105;
+}
+
+.layui-nav {
+    display: flex;
+    justify-content: flex-end;
+    background: rgba(0, 0, 0, .1);
+}
+
+.layui-nav .layui-nav-item > a {
+    padding: 20px;
+    font-size: 30px;
+}
+
+.layui-nav-child {
+    top: 100px;
+}
+
+.layui-nav-img {
+    width: 50px;
+    height: 50px;
+}
+
+.layui-nav-bar {
+    background-color: rgb(243, 203, 202);
+}
+
+#page {
+    padding: 20px 60px;
+}
+
+.layui-tab-title {
+    display: flex;
+    justify-content: space-around;
+    border: none;
+    font-family: 站酷文艺体,站酷快乐体2016修订版;
+}
+
+.layui-tab-card > .layui-tab-title {
+    height: auto;
+    background: transparent;
+}
+
+.layui-tab-title .layui-this:after {
+    height: auto;
+}
+
+.layui-tab-card {
+    border: none;
+    box-shadow: none;
+}
+
+#name {
+    width: 70px;
+    height: 50px;
+    font-size: 30px;
+    line-height: 60px;
+    font-family: Ribbonofhope-zA71;
+}
+
+.layui-tab-title > li {
+    background: #fff;
+    font-size: 25px;
+    padding: 10px 85px;
+}
+
+.layui-tab-card > .layui-tab-title .layui-this {
+    background-color: #000;
+    color: #fff;
+}
+
+#page > div > div > div.layui-tab-item {
+    margin-top: 115px;
+}
+
+#page > div > div > div.layui-tab-item .essay-list {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.essay-list .essay-list-col {
+    width: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.layui-tab-content .layui-tab-item .essay {
+    width: 420px;
+    margin-bottom: 40px;
+    background-color: #fff;
+    font-family: 沐瑶软笔手写体,站酷快乐体2016修订版;
+}
+
+.layui-tab-content .layui-tab-item .essay div {
+    text-align: center;
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-content p {
+    text-align: start;
+    text-indent: 2em;
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-class {
+    margin-top: -40px;
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-class .layui-icon-edit {
+    font-size: 45px;
+    background-color: #000;
+    color: #fff;
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-dir {
+    margin-top: 45px;
+    font-size: 16px;
+    color: rgb(148, 148, 148);
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-title {
+    margin-top: 16px;
+    font-size: 25px;
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-time {
+    margin-top: 16px;
+    font-size: 17px;
+    color: rgb(153, 153, 153);
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-content {
+    margin-top: 30px;
+    padding: 0 35px 35px;
+    color: #333;
+    font-size: 15px;
+    height: auto !important;
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-content p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+}
+
+.layui-tab-content .layui-tab-item .essay .full-text {
+    margin-top: 25px;
+}
+
+.layui-tab-content .layui-tab-item .essay .full-text a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-width: 1px;
+    border-color: transparent rgb(232, 232, 232) transparent rgb(232, 232, 232);
+    border-style: solid;
+    font-size: 18px;
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-report {
+    display: flex;
+    justify-content: space-between;
+}
+
+.layui-tab-content .layui-tab-item .essay .essay-report dd {
+    padding: 10px 10px 20px;
+    flex: 1;
+}
+
+footer {
+    height: 300px;
+    background-color: #3F3F3F;
+}
+
+#test1 {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#user-pic {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#search{
+    position: absolute;
+    left: 50px;
+    top: 30px;
+    background-color: transparent;
+}
+.layui-nav *{
+    font-size: 18px;
+}
+.btn{
+    position: absolute;
+    top: 3px;
+    right: 0;
+    padding: 7px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.layui-input{
+    width: 32px;
+    border-radius: 5px;
+    background-color: transparent;
+    opacity: .5;
+    transition: .7s;
+    color: #000;
+    overflow: hidden;
+}
+#search:hover .layui-input{
+    width: 300px;
+    background-color: rgba(233,233,233,.7);
+}
